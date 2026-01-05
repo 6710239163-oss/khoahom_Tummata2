@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>My page</title>
+</head>
+
+<body>
+    
+     <div class="navber">
+        <a href="หน้าแรก.html">หน้าแรก</a>
+        <a href="ประวัติส่วนตัว.html">ประวัติส่วนตัว</a>
+        <a href="ผลงาน.html">ผลงาน</a>
+        <a href="ติดต่อ.html">ติดต่อ</a>
+    </div>
+<title>Image Slider</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 60px auto;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    text-align: center;
+}
+
+.slide img {
+    max-width: 300px;
+}
+
+/* ปุ่มเลื่อน */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #666;
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+/* จุดบอกตำแหน่ง */
+.dots {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #ccc;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+
+.dot.active {
+    background: #0077b6;
+}
+
+/* LOGO ด้านขวาบน */
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #0077b6;
+    font-size: 28px;
+}
+</style>
+<h1 class="work-title">ผลงานของฉัน ✨</h1>
+<p class="work-subtitle">รวมงานที่ตั้งใจทำด้วยใจเลยนะคะ 💕</p>
+
+<div class="slider-container work-slider">
+    <button class="nav-btn prev" onclick="prevSlide()">&#10094;</button>
+
+    <div class="slider" id="slider">
+        <div class="slide work-card">
+            <img src="img/Artboard 1.png">
+            
+        </div>
+
+        <div class="slide work-card">
+            <img src="img/เพิ่มหัวเรื่องย่อย.png">
+            
+        </div>
+
+        <div class="slide work-card">
+            <img src="img/logo.png">
+           
+        </div>
+
+         <div class="slide work-card">
+            <img src="img/จิ้ด007l'[.png">
+           
+        </div>
+    </div>
+
+    <button class="nav-btn next" onclick="nextSlide()">&#10095;</button>
+</div>
+
+<div class="dots" id="dots"></div>
+
+
+<div class="dots" id="dots"></div>
+
+<script>
+let index = 0;
+const slider = document.getElementById("slider");
+const slides = document.querySelectorAll(".slide");
+const dotsContainer = document.getElementById("dots");
+
+// สร้าง dot ตามจำนวน slide
+slides.forEach((_, i) => {
+    const dot = document.createElement("span");
+    dot.classList.add("dot");
+    if (i === 0) dot.classList.add("active");
+    dot.onclick = () => goToSlide(i);
+    dotsContainer.appendChild(dot);
+});
+
+const dots = document.querySelectorAll(".dot");
+
+function updateSlider() {
+    slider.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach(d => d.classList.remove("active"));
+    dots[index].classList.add("active");
+}
+
+function nextSlide() {
+    index = (index + 1) % slides.length;
+    updateSlider();
+}
+
+function prevSlide() {
+    index = (index - 1 + slides.length) % slides.length;
+    updateSlider();
+}
+
+function goToSlide(i) {
+    index = i;
+    updateSlider();
+}
+</script>
+
+</body>
+</html>
